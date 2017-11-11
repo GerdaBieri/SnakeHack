@@ -134,11 +134,46 @@ public class SnakeService {
     }
 
 
+
+    PointDTO possibilityUp = new PointDTO();
+    PointDTO possibilityDown = new PointDTO();
+    PointDTO possibilityRight = new PointDTO();
+    PointDTO possibilityLeft = new PointDTO();
+
+    int guessForMoveUp = 1000;
+    int guessForMoveDown = 1000;
+    int guessForMoveRight = 1000;
+    int guessForMoveLeft = 1000;
+
+    PointDTO nearestFood = new PointDTO();
+
    /*
    Work with initialized Request settings and set all decision variables
     */
    private void think() {
+       // Set the 4 possible Points for move
+       possibilityUp.setX(myHead.getX());
+       possibilityUp.setY(myHead.getY()-1);
 
+       possibilityDown.setX(myHead.getX());
+       possibilityDown.setY(myHead.getY()+1);
+
+       possibilityRight.setX(myHead.getX()+1);
+       possibilityRight.setY(myHead.getY());
+
+       possibilityLeft.setX(myHead.getX()-1);
+       possibilityLeft.setY(myHead.getY());
+
+       guessForMoveUp = guessValueOfPossibleMove(possibilityUp);
+       guessForMoveDown = guessValueOfPossibleMove(possibilityDown);
+       guessForMoveLeft = guessValueOfPossibleMove(possibilityLeft);
+       guessForMoveRight = guessValueOfPossibleMove(possibilityRight);
+   }
+
+   private int guessValueOfPossibleMove(PointDTO point) {
+
+
+       return 1000;
    }
 
     /*
