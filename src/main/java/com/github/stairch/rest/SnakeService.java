@@ -7,6 +7,7 @@ import com.github.stairch.types.TailType;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.glassfish.grizzly.utils.ArrayUtils;
 
 import javax.json.Json;
 import javax.json.JsonArray;
@@ -15,6 +16,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static com.github.stairch.RestInPeace.BASE_URI;
@@ -182,6 +185,9 @@ public class SnakeService {
 
        // Wenn er in der Wand landet
 
+       if (hitsWall(point, width, height)) {
+           return maxPossibleValue;
+       }
 
        // Wenn er in den besetzten Feldern ist
 
@@ -192,21 +198,38 @@ public class SnakeService {
        return maxPossibleValue;
    }
 
+   private boolean hitsWall(PointDTO point, int width, int height) {
+
+       int x = point.getX();
+       int y = point.getY();
+
+       boolean xIsInField = 0<=x && x<=(width-1);
+       boolean yIsInField = 0<=y && y<=(height-1);
+
+       return !xIsInField || !yIsInField;
+   }
+
     /*
     Decide based on decision variables
      */
    private MoveResponseDTO decide() {
        MoveResponseDTO response = new MoveResponseDTO();
        response.setMove(Move.right);
-       /*
-       char[] a = {'3', '5', '1', '4', '2'};
 
-        List b = Arrays.asList(ArrayUtils.toObject(a));
+       int minWert = guessForMoveUp;
+       if(guessForMoveDown < minWert) {
+           minWert = guessForMoveDown;
+           response.setMove(Move.down);
+       }
+       if(guessForMoveRight < minWert) {
+           minWert = guessForMoveRight;
+           response.setMove(Move.right);
+       }
+       if(guessForMoveLeft < minWert) {
+           minWert = guessForMoveLeft;
+           response.setMove(Move.left);
+       }
 
-        System.out.println(Collections.min(b));
-        System.out.println(Collections.max(b));
-
-        */
        return response;
 
    }
