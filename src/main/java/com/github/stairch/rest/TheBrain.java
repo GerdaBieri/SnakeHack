@@ -8,6 +8,9 @@ public class TheBrain {
 
     private MoveResponseDTO conclusion;
 
+    private int counter = 0;
+
+
     public MoveResponseDTO getConclusion() {
         return conclusion;
     }
@@ -20,11 +23,25 @@ public class TheBrain {
 
     public void think(MoveRequestDTO moveRequestDTO) {
 
+        switch(counter%4) {
+            case (0):
+                conclusion.setMove(Move.right);
+                break;
+            case (1):
+                conclusion.setMove(Move.down);
+                break;
+            case (2):
+                conclusion.setMove(Move.left);
+                break;
+            case (3):
+                conclusion.setMove(Move.up);
+                break;
+        }
 
-        conclusion.setMove(Move.left);
-        conclusion.setMove(Move.right);
-        conclusion.setMove(Move.up);
-        conclusion.setMove(Move.down);
+            counter++;
+
+
+       // conclusion.setMove(Move.right);
 
     }
 }
