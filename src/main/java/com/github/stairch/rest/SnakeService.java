@@ -50,7 +50,7 @@ public class SnakeService {
         startResponse.setName("Sneaky Snake");
         startResponse.setTaunt("I like trains!");
 
-        startResponse.setHeadType(HeadType.getPixel());
+        startResponse.setHeadType(HeadType.getSmile());
         startResponse.setTailType(TailType.getBlockbum());
         final String responseBody = gson.toJson(startResponse);
         return Response.status(Response.Status.OK).entity(responseBody).build();
@@ -90,8 +90,8 @@ public class SnakeService {
         // Fill out blocked Coordinates by Snakes
         com.google.gson.JsonArray snakes = jsonObj.getAsJsonArray("snakes");
         fillOutAllSnakeInfos(snakes);
-        com.google.gson.JsonArray dead_snakes = jsonObj.getAsJsonArray("dead_snakes");
-        fillOutAllSnakeInfos(dead_snakes);
+        //com.google.gson.JsonArray dead_snakes = jsonObj.getAsJsonArray("dead_snakes");
+       // fillOutAllSnakeInfos(dead_snakes);
 
         // Fill out food coordinates
         com.google.gson.JsonArray foods = jsonObj.getAsJsonArray("food");
@@ -115,7 +115,7 @@ public class SnakeService {
 
         for(int i = 0 ; i < snakes.size(); i++){
             com.google.gson.JsonArray coordinatesArray = snakes.get(i).getAsJsonObject().get("coords").getAsJsonArray();
-            for(int j = 0; j < coordinatesArray.size(); j++){
+            for(int j = 0; j < coordinatesArray.size()-1; j++){
                 PointDTO point = new PointDTO();
                 JsonElement coordinatesEntry = coordinatesArray.get(j);
                 com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
