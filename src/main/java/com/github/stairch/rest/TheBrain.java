@@ -10,37 +10,27 @@ import java.util.ArrayList;
 public class TheBrain {
 
 
-    public void findNearesFood(PointDTO myhead, ArrayList<PointDTO> foods ){
-        //System.out.println("hallo");
-        //System.out.println(myhead);
-        //System.out.println(foods);
-       // int myx = myhead.getX();
-       // int myy = myhead.getY();
-        int maxDistants = 100;
-        int counter = 0;
-        for(PointDTO iterator:foods){
-            int nowX = iterator.getX();
-            int nowY = iterator.getY();
+    public int findNearesFood(PointDTO myhead, ArrayList<PointDTO> foods ){
 
-            int distance = 0;
-            if(nowX > myhead.getX()) {
-                distance = distance + nowX - myhead.getX();
-            }else{
-                distance = distance - (nowX - myhead.getX());
+        int minDistance = 1000;
+        int foodID = 0;
+        for(int i = 0; i < foods.size(); i++){
+            int dis = getDistance(myhead, foods.get(i) );
+            if(dis < minDistance ) {
+                foodID = i;
+                minDistance = dis;
             }
-
-            if(nowY > myhead.getY()) {
-                distance = distance + nowY - myhead.getY();
-            }else{
-                distance = distance - (nowY - myhead.getY());
-            }
-
-           if(distance < maxDistants)
-               maxDistants = distance;
         }
-
-        System.out.println("Distance to food:" + maxDistants);
-
+        return foodID;
     }
 
+    public int getDistance(PointDTO from, PointDTO to){
+        int distance = 0;
+
+            distance =distance +  Math.abs( to.getX() - from.getX());
+            distance =distance +  Math.abs( to.getY() - from.getY());
+
+
+        return distance;
+    }
 }

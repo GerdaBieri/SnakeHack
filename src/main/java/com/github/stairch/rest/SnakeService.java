@@ -63,7 +63,6 @@ public class SnakeService {
         think();
         MoveResponseDTO moveResponse = decide();
         System.out.println(moveResponse);
-        System.out.println("Not dead");
         final String responseBody = gson.toJson(moveResponse);
         return Response.status(Response.Status.OK).entity(responseBody).build();
     }
@@ -96,18 +95,15 @@ public class SnakeService {
         // Fill out food coordinates
         com.google.gson.JsonArray foods = jsonObj.getAsJsonArray("food");
         fillInFood(foods);
-
-        System.out.println("me:" + meAsASnake);
-
-
     }
 
 
     private void fillOutAllSnakeInfos(com.google.gson.JsonArray snakes){
         for(int i = 0 ; i < snakes.size(); i++){
             com.google.gson.JsonArray coordinatesArray = snakes.get(i).getAsJsonObject().get("coords").getAsJsonArray();
-            PointDTO point = new PointDTO();
+
             for(int j = 0; j < coordinatesArray.size(); j++){
+                PointDTO point = new PointDTO();
                 JsonElement coordinatesEntry = coordinatesArray.get(j);
                 com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
                 point.setX(cordinatesOfPoint.get(0).getAsInt());
@@ -116,6 +112,7 @@ public class SnakeService {
             }
 
             if (snakes.get(i).getAsJsonObject().get("id").equals( meAsASnake)){
+                PointDTO point = new PointDTO();
                 JsonElement coordinatesEntry = coordinatesArray.get(0);
                 com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
                 point.setX(cordinatesOfPoint.get(0).getAsInt());
@@ -126,8 +123,9 @@ public class SnakeService {
     }
 
     private void fillInFood(com.google.gson.JsonArray foods){
-        PointDTO point = new PointDTO();
+
         for(int j = 0; j < foods.size(); j++){
+            PointDTO point = new PointDTO();
             JsonElement coordinatesEntry = foods.get(j);
             com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
             point.setX(cordinatesOfPoint.get(0).getAsInt());
@@ -168,6 +166,8 @@ public class SnakeService {
        possibilityLeft.setY(myHead.getY());
 
        // Guess an order of the food
+       TheBrain mybrain = new TheBrain();
+       mybrain.findNearesFood(myHead, FoodArray);
 
        /*
         * finished initialisation of thinking
@@ -186,6 +186,8 @@ public class SnakeService {
        // Wenn er in der Wand landet
 
        if (hitsWall(point, width, height)) {
+           System.out.println("hit wall " + width + " " + height);
+           System.out.println(point.getX() + " " +point.getY());
            return maxPossibleValue;
        }
 
@@ -195,18 +197,28 @@ public class SnakeService {
        // Wähle seinen Wert, je kleiner, desto besser
 
 
-       return maxPossibleValue;
+       return 2;
    }
 
    private boolean hitsWall(PointDTO point, int width, int height) {
 
+
        int x = point.getX();
        int y = point.getY();
 
-       boolean xIsInField = 0<=x && x<=(width-1);
-       boolean yIsInField = 0<=y && y<=(height-1);
+       if( x < 0)
+           return true;
 
-       return !xIsInField || !yIsInField;
+       if (y < 0 )
+           return true;
+
+
+       if(x >= width)
+           return true;
+
+       if (y >= height)
+           return true;
+       return false;
    }
 
     /*
