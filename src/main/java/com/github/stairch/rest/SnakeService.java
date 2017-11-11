@@ -5,6 +5,8 @@ import com.github.stairch.types.HeadType;
 import com.github.stairch.types.Move;
 import com.github.stairch.types.TailType;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -48,21 +50,25 @@ public class SnakeService {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+    // @Consumes(MediaType.APPLICATION_JSON)
+    // @Produces(MediaType.APPLICATION_JSON)
     @Path("/move")
-    public final Response move(final MoveRequestDTO moveRequestDTO) {
-       // System.out.println(moveRequestDTO);
-        System.out.println("hi");
+    public final Response move(final String moveRequestDTO) {
+        System.out.println(moveRequestDTO);
+        Gson gson = new Gson();
+        JsonElement element = gson.fromJson (moveRequestDTO, JsonElement.class);
+        JsonObject jsonObj = element.getAsJsonObject();
 
+        System.out.println(jsonObj.get("coords"));
        // TheBrain mybrain = new TheBrain();
        // mybrain.think(moveRequestDTO);
 
         //moveResponse.setMove(Move.left);
-        MoveResponseDTO moveResponse = think(moveRequestDTO);
-        // moveResponse.setMove(Move.right);
+        // MoveResponseDTO moveResponse = think(moveRequestDTO);
+         MoveResponseDTO moveResponse = new MoveResponseDTO();
+         moveResponse.setMove(Move.right);
         System.out.println(moveResponse);
-        System.out.println("Hallo");
+        System.out.println("Not dead");
         final String responseBody = gson.toJson(moveResponse);
         return Response.status(Response.Status.OK).entity(responseBody).build();
     }
