@@ -59,11 +59,41 @@ public class SnakeService {
        // mybrain.think(moveRequestDTO);
 
         //moveResponse.setMove(Move.left);
-        MoveResponseDTO moveResponse = new MoveResponseDTO();
-        moveResponse.setMove(Move.right);
+        MoveResponseDTO moveResponse = think(moveRequestDTO);
+        // moveResponse.setMove(Move.right);
         System.out.println(moveResponse);
         System.out.println("Hallo");
         final String responseBody = gson.toJson(moveResponse);
         return Response.status(Response.Status.OK).entity(responseBody).build();
     }
+
+    private int counter;
+    public MoveResponseDTO think(MoveRequestDTO moveRequestDTO) {
+        MoveResponseDTO conclusion = new MoveResponseDTO();
+        switch(counter%4) {
+            case (0):
+                conclusion.setMove(Move.right);
+                break;
+            case (1):
+                conclusion.setMove(Move.down);
+                break;
+            case (2):
+                conclusion.setMove(Move.left);
+                break;
+            case (3):
+                conclusion.setMove(Move.up);
+                break;
+        }
+        System.out.println(conclusion);
+        counter++;
+        System.out.println(counter);
+
+        //conclusion.setTaunt("my counter: " + counter);
+
+        // conclusion.setMove(Move.right);
+
+        return conclusion;
+    }
+
+
 }
