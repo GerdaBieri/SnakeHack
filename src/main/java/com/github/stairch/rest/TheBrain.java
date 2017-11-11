@@ -39,7 +39,7 @@ public class TheBrain {
         }
 
             counter++;
-
+            conclusion.setTaunt("my counter: " + counter);
 
        // conclusion.setMove(Move.right);
 
