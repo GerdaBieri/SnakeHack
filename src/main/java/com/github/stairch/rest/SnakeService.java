@@ -227,19 +227,23 @@ public class SnakeService {
    private MoveResponseDTO decide() {
        MoveResponseDTO response = new MoveResponseDTO();
 
+       System.out.println(guessForMoveUp + "U " +guessForMoveDown +"D " + guessForMoveRight +"R " +guessForMoveLeft +"L" );
+
        int minWert = guessForMoveUp;
        response.setMove(Move.up);
+       if(guessForMoveLeft < minWert) {
+           minWert = guessForMoveLeft;
+           response.setMove(Move.left);
+       }
        if(guessForMoveDown < minWert) {
            minWert = guessForMoveDown;
            response.setMove(Move.down);
        }
+
        if(guessForMoveRight < minWert) {
-           minWert = guessForMoveRight;
            response.setMove(Move.right);
        }
-       if(guessForMoveLeft < minWert) {
-           response.setMove(Move.left);
-       }
+
 
        return response;
 
