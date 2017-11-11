@@ -2,48 +2,45 @@ package com.github.stairch.rest;
 
 import com.github.stairch.dtos.MoveRequestDTO;
 import com.github.stairch.dtos.MoveResponseDTO;
+import com.github.stairch.dtos.PointDTO;
 import com.github.stairch.types.Move;
+
+import java.util.ArrayList;
 
 public class TheBrain {
 
-    private MoveResponseDTO conclusion;
 
-    private int counter = 0;
+    public void findNearesFood(PointDTO myhead, ArrayList<PointDTO> foods ){
+        //System.out.println("hallo");
+        //System.out.println(myhead);
+        //System.out.println(foods);
+       // int myx = myhead.getX();
+       // int myy = myhead.getY();
+        int maxDistants = 100;
+        int counter = 0;
+        for(PointDTO iterator:foods){
+            int nowX = iterator.getX();
+            int nowY = iterator.getY();
 
+            int distance = 0;
+            if(nowX > myhead.getX()) {
+                distance = distance + nowX - myhead.getX();
+            }else{
+                distance = distance - (nowX - myhead.getX());
+            }
 
-    public MoveResponseDTO getConclusion() {
-        return this.conclusion;
-    }
+            if(nowY > myhead.getY()) {
+                distance = distance + nowY - myhead.getY();
+            }else{
+                distance = distance - (nowY - myhead.getY());
+            }
 
-    public void setConclusion(MoveResponseDTO conclusion) {
-        this.conclusion = conclusion;
-    }
-
-
-
-    public void think(MoveRequestDTO moveRequestDTO) {
-
-        switch(counter%4) {
-            case (0):
-                this.conclusion.setMove(Move.right);
-                break;
-            case (1):
-                this.conclusion.setMove(Move.down);
-                break;
-            case (2):
-                this.conclusion.setMove(Move.left);
-                break;
-            case (3):
-                this.conclusion.setMove(Move.up);
-                break;
+           if(distance < maxDistants)
+               maxDistants = distance;
         }
-            System.out.println(this.conclusion);
-            counter++;
-            System.out.println(counter);
 
-            //conclusion.setTaunt("my counter: " + counter);
-
-       // conclusion.setMove(Move.right);
+        System.out.println("Distance to food:" + maxDistants);
 
     }
+
 }
