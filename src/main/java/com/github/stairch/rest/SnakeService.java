@@ -35,10 +35,11 @@ public class SnakeService {
         System.out.println(startRequestDTO);
 
         final StartResponseDTO startResponse = new StartResponseDTO();
-        startResponse.setColor("black");
+        startResponse.setColor("#ff63f2");
+        startResponse.setSecondaryColor("#ff8a2b");
         startResponse.setHeadUrl(BASE_URI + "static/head.png");
-        startResponse.setName("STAIR Java Snake");
-        startResponse.setTaunt("Meep meep");
+        startResponse.setName("Sneaky Snake");
+        startResponse.setTaunt("I like trains!");
 
         startResponse.setHeadType(HeadType.getPixel());
         startResponse.setTailType(TailType.getBlockbum());
