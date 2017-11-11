@@ -52,18 +52,11 @@ public class SnakeService {
     }
 
     @POST
-    // @Consumes(MediaType.APPLICATION_JSON)
-    // @Produces(MediaType.APPLICATION_JSON)
     @Path("/move")
     public final Response move(final String moveRequestDTO) {
-       // System.out.println(moveRequestDTO);
         initialize(moveRequestDTO);
-
         think();
-
-        //moveResponse.setMove(Move.left);
-        // MoveResponseDTO moveResponse = think(moveRequestDTO);
-         MoveResponseDTO moveResponse = decide();
+        MoveResponseDTO moveResponse = decide();
         System.out.println(moveResponse);
         System.out.println("Not dead");
         final String responseBody = gson.toJson(moveResponse);
@@ -91,35 +84,6 @@ public class SnakeService {
 
         }
     }
-
-    private int counter;
-   /* public MoveResponseDTO think(MoveRequestDTO moveRequestDTO) {
-        MoveResponseDTO conclusion = new MoveResponseDTO();
-        switch(counter%4) {
-            case (0):
-                conclusion.setMove(Move.right);
-                break;
-            case (1):
-                conclusion.setMove(Move.down);
-                break;
-            case (2):
-                conclusion.setMove(Move.left);
-                break;
-            case (3):
-                conclusion.setMove(Move.up);
-                break;
-        }
-        System.out.println(conclusion);
-        counter++;
-        System.out.println(counter);
-
-        //conclusion.setTaunt("my counter: " + counter);
-
-        // conclusion.setMove(Move.right);
-
-
-        return conclusion;
-    }*/
 
    /*
    Work with initialized Request settings and set all decision variables
