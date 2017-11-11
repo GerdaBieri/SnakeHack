@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5f6f9b1-34a1-4267-9825-ed154382c4ab" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/github/stairch/rest/TheBrain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/stairch/rest/SnakeService.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/stairch/rest/SnakeService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/github/stairch/rest/TheBrain.java" afterPath="$PROJECT_DIR$/src/main/java/com/github/stairch/rest/TheBrain.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="RestInPeace.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RestInPeace.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/RestInPeace.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+            <state relative-caret-position="190">
+              <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,8 +61,8 @@
       <file leaf-file-name="SnakeService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/rest/SnakeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="53" column="60" lean-forward="false" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
+            <state relative-caret-position="-17">
+              <caret line="33" column="69" lean-forward="false" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -71,9 +71,15 @@
       <file leaf-file-name="TheBrain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/rest/TheBrain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-              <folding />
+            <state relative-caret-position="374">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#277#278#0" expanded="true" />
+                <element signature="e#310#311#0" expanded="true" />
+                <element signature="e#371#372#0" expanded="true" />
+                <element signature="e#415#416#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoveRequestDTO.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MoveRequestDTO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/dtos/MoveRequestDTO.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
@@ -141,6 +147,9 @@
     <option name="y" value="-8" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -372,12 +381,20 @@
       <updated>1510254432674</updated>
       <workItem from="1510254433951" duration="3026000" />
       <workItem from="1510300125490" duration="435000" />
-      <workItem from="1510391227637" duration="1416000" />
+      <workItem from="1510391227637" duration="3002000" />
     </task>
+    <task id="LOCAL-00001" summary="snek">
+      <created>1510392691316</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1510392691316</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4877000" />
+    <option name="totallyTimeSpent" value="6463000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -421,6 +438,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="snek" />
+    <option name="LAST_COMMIT_MESSAGE" value="snek" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -462,16 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/RestInPeace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/types/Move.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -496,22 +507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/rest/TheBrain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="4" lean-forward="false" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/rest/SnakeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="53" column="60" lean-forward="false" selection-start-line="53" selection-start-column="60" selection-end-line="53" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/dtos/StartRequestDTO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
@@ -525,6 +520,38 @@
         <state relative-caret-position="68">
           <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/rest/TheBrain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#277#278#0" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="e#415#416#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/rest/SnakeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="33" column="69" lean-forward="false" selection-start-line="33" selection-start-column="54" selection-end-line="33" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/github/stairch/RestInPeace.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
