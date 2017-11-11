@@ -12,7 +12,7 @@ public class TheBrain {
 
 
     public MoveResponseDTO getConclusion() {
-        return conclusion;
+        return this.conclusion;
     }
 
     public void setConclusion(MoveResponseDTO conclusion) {
@@ -25,21 +25,23 @@ public class TheBrain {
 
         switch(counter%4) {
             case (0):
-                conclusion.setMove(Move.right);
+                this.conclusion.setMove(Move.right);
                 break;
             case (1):
-                conclusion.setMove(Move.down);
+                this.conclusion.setMove(Move.down);
                 break;
             case (2):
-                conclusion.setMove(Move.left);
+                this.conclusion.setMove(Move.left);
                 break;
             case (3):
-                conclusion.setMove(Move.up);
+                this.conclusion.setMove(Move.up);
                 break;
         }
-
+            System.out.println(this.conclusion);
             counter++;
-            conclusion.setTaunt("my counter: " + counter);
+            System.out.println(counter);
+
+            //conclusion.setTaunt("my counter: " + counter);
 
        // conclusion.setMove(Move.right);
 

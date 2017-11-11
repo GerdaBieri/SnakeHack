@@ -52,15 +52,17 @@ public class SnakeService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/move")
     public final Response move(final MoveRequestDTO moveRequestDTO) {
-        System.out.println(moveRequestDTO);
+       // System.out.println(moveRequestDTO);
+        System.out.println("hi");
 
-
-        TheBrain mybrain = new TheBrain();
-        mybrain.think(moveRequestDTO);
+       // TheBrain mybrain = new TheBrain();
+       // mybrain.think(moveRequestDTO);
 
         //moveResponse.setMove(Move.left);
-        MoveResponseDTO moveResponse = mybrain.getConclusion();
-
+        MoveResponseDTO moveResponse = new MoveResponseDTO();
+        moveResponse.setMove(Move.right);
+        System.out.println(moveResponse);
+        System.out.println("Hallo");
         final String responseBody = gson.toJson(moveResponse);
         return Response.status(Response.Status.OK).entity(responseBody).build();
     }
