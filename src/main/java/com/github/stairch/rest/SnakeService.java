@@ -65,22 +65,32 @@ public class SnakeService {
         return Response.status(Response.Status.OK).entity(responseBody).build();
     }
 
-private ArrayList blockedPointsArray;
+    private ArrayList blockedPointsArray;
     private ArrayList FoodArray;
     private PointDTO myHead = new PointDTO();
     JsonElement meAsASnake;
+    int width;
+    int height;
 
     private void initialize(String request) {
         blockedPointsArray = new ArrayList<PointDTO>();
+        FoodArray = new ArrayList<PointDTO>();
+
+        // Get Myself first
         JsonElement element = gson.fromJson (request, JsonElement.class);
         JsonObject jsonObj = element.getAsJsonObject();
         meAsASnake = jsonObj.get("you");
+        //How's the field?
+        width = jsonObj.get("width").getAsInt();
+        height = jsonObj.get("height").getAsInt();
 
+        // Fill out blocked Coordinates by Snakes
         com.google.gson.JsonArray snakes = jsonObj.getAsJsonArray("snakes");
         fillOutAllSnakeInfos(snakes);
         com.google.gson.JsonArray dead_snakes = jsonObj.getAsJsonArray("dead_snakes");
         fillOutAllSnakeInfos(dead_snakes);
 
+        // Fill out food coordinates
         com.google.gson.JsonArray foods = jsonObj.getAsJsonArray("food");
         fillInFood(foods);
 
@@ -107,9 +117,7 @@ private ArrayList blockedPointsArray;
                 com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
                 point.setX(cordinatesOfPoint.get(0).getAsInt());
                 point.setY(cordinatesOfPoint.get(1).getAsInt());
-                System.out.println("this is me" + snakes.get(i).getAsJsonObject().get("id"));
-            }else{
-                System.out.println("this is not me:" + snakes.get(i).getAsJsonObject().get("id"));
+                myHead = point;
             }
 
 
