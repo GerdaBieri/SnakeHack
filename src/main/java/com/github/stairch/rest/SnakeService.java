@@ -226,9 +226,9 @@ public class SnakeService {
      */
    private MoveResponseDTO decide() {
        MoveResponseDTO response = new MoveResponseDTO();
-       response.setMove(Move.right);
 
        int minWert = guessForMoveUp;
+       response.setMove(Move.up);
        if(guessForMoveDown < minWert) {
            minWert = guessForMoveDown;
            response.setMove(Move.down);
@@ -238,7 +238,6 @@ public class SnakeService {
            response.setMove(Move.right);
        }
        if(guessForMoveLeft < minWert) {
-           minWert = guessForMoveLeft;
            response.setMove(Move.left);
        }
 
