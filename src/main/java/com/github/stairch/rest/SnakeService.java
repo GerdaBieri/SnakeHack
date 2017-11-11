@@ -57,8 +57,23 @@ public class SnakeService {
     @Path("/move")
     public final Response move(final String moveRequestDTO) {
        // System.out.println(moveRequestDTO);
+        initialize(moveRequestDTO);
+
+        think();
+
+        //moveResponse.setMove(Move.left);
+        // MoveResponseDTO moveResponse = think(moveRequestDTO);
+         MoveResponseDTO moveResponse = decide();
+        System.out.println(moveResponse);
+        System.out.println("Not dead");
+        final String responseBody = gson.toJson(moveResponse);
+        return Response.status(Response.Status.OK).entity(responseBody).build();
+    }
+
+
+    private void initialize(String request) {
         Gson gson = new Gson();
-        JsonElement element = gson.fromJson (moveRequestDTO, JsonElement.class);
+        JsonElement element = gson.fromJson (request, JsonElement.class);
         JsonObject jsonObj = element.getAsJsonObject();
         JsonElement meAsASnake = jsonObj.get("you");
 
@@ -75,19 +90,10 @@ public class SnakeService {
 
 
         }
-
-        //moveResponse.setMove(Move.left);
-        // MoveResponseDTO moveResponse = think(moveRequestDTO);
-         MoveResponseDTO moveResponse = new MoveResponseDTO();
-         moveResponse.setMove(Move.right);
-        System.out.println(moveResponse);
-        System.out.println("Not dead");
-        final String responseBody = gson.toJson(moveResponse);
-        return Response.status(Response.Status.OK).entity(responseBody).build();
     }
 
     private int counter;
-    public MoveResponseDTO think(MoveRequestDTO moveRequestDTO) {
+   /* public MoveResponseDTO think(MoveRequestDTO moveRequestDTO) {
         MoveResponseDTO conclusion = new MoveResponseDTO();
         switch(counter%4) {
             case (0):
@@ -111,8 +117,34 @@ public class SnakeService {
 
         // conclusion.setMove(Move.right);
 
-        return conclusion;
-    }
 
+        return conclusion;
+    }*/
+
+   /*
+   Work with initialized Request settings and set all decision variables
+    */
+   private void think() {
+
+   }
+
+    /*
+    Decide based on decision variables
+     */
+   private MoveResponseDTO decide() {
+       MoveResponseDTO response = new MoveResponseDTO();
+       response.setMove(Move.right);
+       /*
+       char[] a = {'3', '5', '1', '4', '2'};
+
+        List b = Arrays.asList(ArrayUtils.toObject(a));
+
+        System.out.println(Collections.min(b));
+        System.out.println(Collections.max(b));
+
+        */
+       return response;
+
+   }
 
 }
