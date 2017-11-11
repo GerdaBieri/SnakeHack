@@ -13,6 +13,8 @@ import javax.json.JsonArray;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static com.github.stairch.RestInPeace.BASE_URI;
@@ -63,9 +65,9 @@ public class SnakeService {
         return Response.status(Response.Status.OK).entity(responseBody).build();
     }
 
-
+private ArrayList blockedPointsArray;
     private void initialize(String request) {
-        Gson gson = new Gson();
+        blockedPointsArray = new ArrayList<PointDTO>();
         JsonElement element = gson.fromJson (request, JsonElement.class);
         JsonObject jsonObj = element.getAsJsonObject();
         JsonElement meAsASnake = jsonObj.get("you");
@@ -75,6 +77,18 @@ public class SnakeService {
         System.out.println("me:" + meAsASnake);
 
         for(int i = 0 ; i < snakes.size(); i++){
+            JsonElement b = snakes.get(i).getAsJsonObject().get("coords");
+            com.google.gson.JsonArray c = b.getAsJsonArray();
+
+            for(int j = 0; j < c.size(); j++){
+                JsonElement coordinatesEntry = c.get(j);
+                com.google.gson.JsonArray aha = coordinatesEntry.getAsJsonArray();
+                PointDTO blockedPoint = new PointDTO();
+                blockedPoint.setX(aha.get(0).getAsInt());
+                blockedPoint.setY(aha.get(1).getAsInt());
+                blockedPointsArray.add(blockedPoint);
+            }
+
             if (snakes.get(i).getAsJsonObject().get("id").equals( meAsASnake)){
                 System.out.println("this is me" + snakes.get(i).getAsJsonObject().get("id"));
             }else{
