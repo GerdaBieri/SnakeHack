@@ -70,6 +70,7 @@ public class SnakeService {
     private ArrayList blockedPointsArray;
     private ArrayList FoodArray;
     private PointDTO myHead = new PointDTO();
+    int myLength;
     JsonElement meAsASnake;
     int width;
     int height;
@@ -101,7 +102,19 @@ public class SnakeService {
     private void fillOutAllSnakeInfos(com.google.gson.JsonArray snakes){
         for(int i = 0 ; i < snakes.size(); i++){
             com.google.gson.JsonArray coordinatesArray = snakes.get(i).getAsJsonObject().get("coords").getAsJsonArray();
+            if (snakes.get(i).getAsJsonObject().get("id").equals( meAsASnake)){
+                PointDTO point = new PointDTO();
+                JsonElement coordinatesEntry = coordinatesArray.get(0);
+                com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
+                point.setX(cordinatesOfPoint.get(0).getAsInt());
+                point.setY(cordinatesOfPoint.get(1).getAsInt());
+                myHead = point;
+                myLength = snakes.get(i).getAsJsonObject().get("coords").getAsJsonArray().size();
+            }
+        }
 
+        for(int i = 0 ; i < snakes.size(); i++){
+            com.google.gson.JsonArray coordinatesArray = snakes.get(i).getAsJsonObject().get("coords").getAsJsonArray();
             for(int j = 0; j < coordinatesArray.size(); j++){
                 PointDTO point = new PointDTO();
                 JsonElement coordinatesEntry = coordinatesArray.get(j);
@@ -110,17 +123,45 @@ public class SnakeService {
                 point.setY(cordinatesOfPoint.get(1).getAsInt());
                 blockedPointsArray.add(point);
             }
-
-            if (snakes.get(i).getAsJsonObject().get("id").equals( meAsASnake)){
-                PointDTO point = new PointDTO();
-                JsonElement coordinatesEntry = coordinatesArray.get(0);
-                com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
-                point.setX(cordinatesOfPoint.get(0).getAsInt());
-                point.setY(cordinatesOfPoint.get(1).getAsInt());
-                myHead = point;
+            if (!(snakes.get(i).getAsJsonObject().get("id").equals( meAsASnake))) {
+                int size = snakes.get(i).getAsJsonObject().get("coords").getAsJsonArray().size();
+                if (size >= myLength) {
+                    PointDTO point = new PointDTO();
+                    JsonElement otherSnakesHead = coordinatesArray.get(0);
+                    com.google.gson.JsonArray cordinatesOfPoint = otherSnakesHead.getAsJsonArray();
+                    point.setX(cordinatesOfPoint.get(0).getAsInt());
+                    point.setY(cordinatesOfPoint.get(1).getAsInt());
+                    addPointsOfOtherHead(point);
+                }
             }
         }
     }
+
+    public void addPointsOfOtherHead(PointDTO point) {
+        PointDTO pointUp = new PointDTO();
+        PointDTO pointDown = new PointDTO();
+        PointDTO pointRight = new PointDTO();
+        PointDTO pointLeft = new PointDTO();
+
+        pointUp.setX(point.getX());
+        pointUp.setY(point.getY()-1);
+
+        pointDown.setX(point.getX());
+        pointDown.setY(point.getY()+1);
+
+        pointRight.setX(point.getX()+1);
+        pointRight.setY(point.getY());
+
+        pointLeft.setX(point.getX()-1);
+        pointLeft.setY(point.getY());
+
+        blockedPointsArray.add(pointUp);
+        blockedPointsArray.add(pointDown);
+        blockedPointsArray.add(pointRight);
+        blockedPointsArray.add(pointLeft);
+    }
+
+
 
     private void fillInFood(com.google.gson.JsonArray foods){
 
