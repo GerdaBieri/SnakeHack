@@ -167,7 +167,8 @@ public class SnakeService {
 
        // Guess an order of the food
        TheBrain mybrain = new TheBrain();
-       mybrain.findNearesFood(myHead, FoodArray);
+       int idOfNearestFood = mybrain.findNearesFood(myHead, FoodArray);
+       nearestFood = (PointDTO)FoodArray.get(idOfNearestFood);
 
        /*
         * finished initialisation of thinking
@@ -180,12 +181,12 @@ public class SnakeService {
    }
 
    private int guessValueOfPossibleMove(PointDTO point) {
-
+       TheBrain mybrain = new TheBrain();
        int maxPossibleValue = width + height + 1;
 
        // Wenn er in der Wand landet
 
-       if (hitsWall(point, width, height)) {
+       if (mybrain.hitsWall(point, width, height)) {
            System.out.println("hit wall " + width + " " + height);
            System.out.println(point.getX() + " " +point.getY());
            return maxPossibleValue;
@@ -196,31 +197,11 @@ public class SnakeService {
             return maxPossibleValue;
 
        // Wähle seinen Wert, je kleiner, desto besser
+       return mybrain.getDistance(point, nearestFood);
 
-
-       return 2;
    }
 
-   private boolean hitsWall(PointDTO point, int width, int height) {
 
-
-       int x = point.getX();
-       int y = point.getY();
-
-       if( x < 0)
-           return true;
-
-       if (y < 0 )
-           return true;
-
-
-       if(x >= width)
-           return true;
-
-       if (y >= height)
-           return true;
-       return false;
-   }
 
     /*
     Decide based on decision variables

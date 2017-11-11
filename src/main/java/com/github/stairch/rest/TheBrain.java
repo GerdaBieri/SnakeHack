@@ -34,4 +34,25 @@ public class TheBrain {
         return distance;
     }
 
+    public boolean hitsWall(PointDTO point, int width, int height) {
+
+
+        int x = point.getX();
+        int y = point.getY();
+
+        if( x < 0)
+            return true;
+
+        if (y < 0 )
+            return true;
+
+
+        if(x >= width)
+            return true;
+
+        if (y >= height)
+            return true;
+        return false;
+    }
+
 }
