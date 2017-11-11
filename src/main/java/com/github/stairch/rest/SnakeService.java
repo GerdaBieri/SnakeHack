@@ -192,7 +192,8 @@ public class SnakeService {
        }
 
        // Wenn er in den besetzten Feldern ist
-
+        if(blockedPointsArray.contains(point))
+            return maxPossibleValue;
 
        // Wähle seinen Wert, je kleiner, desto besser
 
