@@ -119,8 +119,6 @@ public class SnakeService {
                 point.setY(cordinatesOfPoint.get(1).getAsInt());
                 myHead = point;
             }
-
-
         }
     }
 
