@@ -78,6 +78,9 @@ private ArrayList blockedPointsArray;
 
         com.google.gson.JsonArray snakes = jsonObj.getAsJsonArray("snakes");
         fillOutAllSnakeInfos(snakes);
+        com.google.gson.JsonArray dead_snakes = jsonObj.getAsJsonArray("dead_snakes");
+        fillOutAllSnakeInfos(dead_snakes);
+
         com.google.gson.JsonArray foods = jsonObj.getAsJsonArray("food");
         fillInFood(foods);
 
@@ -113,32 +116,18 @@ private ArrayList blockedPointsArray;
         }
     }
 
-
     private void fillInFood(com.google.gson.JsonArray foods){
-        for(int i = 0 ; i < foods.size(); i++){
-            com.google.gson.JsonArray coordinatesArray = foods.get(i).getAsJsonObject().get("coords").getAsJsonArray();
-            PointDTO point = new PointDTO();
-            for(int j = 0; j < coordinatesArray.size(); j++){
-                JsonElement coordinatesEntry = coordinatesArray.get(j);
-                com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
-                point.setX(cordinatesOfPoint.get(0).getAsInt());
-                point.setY(cordinatesOfPoint.get(1).getAsInt());
-                FoodArray.add(point);
-            }
-
-            if (foods.get(i).getAsJsonObject().get("id").equals( meAsASnake)){
-                JsonElement coordinatesEntry = coordinatesArray.get(0);
-                com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
-                point.setX(cordinatesOfPoint.get(0).getAsInt());
-                point.setY(cordinatesOfPoint.get(1).getAsInt());
-                System.out.println("this is me" + foods.get(i).getAsJsonObject().get("id"));
-            }else{
-                System.out.println("this is not me:" + foods.get(i).getAsJsonObject().get("id"));
-            }
-
-
+        PointDTO point = new PointDTO();
+        for(int j = 0; j < foods.size(); j++){
+            JsonElement coordinatesEntry = foods.get(j);
+            com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
+            point.setX(cordinatesOfPoint.get(0).getAsInt());
+            point.setY(cordinatesOfPoint.get(1).getAsInt());
+            FoodArray.add(point);
         }
     }
+
+
    /*
    Work with initialized Request settings and set all decision variables
     */
