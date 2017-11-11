@@ -8,6 +8,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import javax.json.Json;
+import javax.json.JsonArray;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -54,14 +56,25 @@ public class SnakeService {
     // @Produces(MediaType.APPLICATION_JSON)
     @Path("/move")
     public final Response move(final String moveRequestDTO) {
-        System.out.println(moveRequestDTO);
+       // System.out.println(moveRequestDTO);
         Gson gson = new Gson();
         JsonElement element = gson.fromJson (moveRequestDTO, JsonElement.class);
         JsonObject jsonObj = element.getAsJsonObject();
+        JsonElement meAsASnake = jsonObj.get("you");
 
-        System.out.println(jsonObj.get("coords"));
-       // TheBrain mybrain = new TheBrain();
-       // mybrain.think(moveRequestDTO);
+        com.google.gson.JsonArray snakes = jsonObj.getAsJsonArray("snakes");
+        //JsonObject snakesJson = snakes.getAsJsonObject();
+        System.out.println("me:" + meAsASnake);
+
+        for(int i = 0 ; i < snakes.size(); i++){
+            if (snakes.get(i).getAsJsonObject().get("id").equals( meAsASnake)){
+                System.out.println("this is me" + snakes.get(i).getAsJsonObject().get("id"));
+            }else{
+                System.out.println("this is not me:" + snakes.get(i).getAsJsonObject().get("id"));
+            }
+
+
+        }
 
         //moveResponse.setMove(Move.left);
         // MoveResponseDTO moveResponse = think(moveRequestDTO);
