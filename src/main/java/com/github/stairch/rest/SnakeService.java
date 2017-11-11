@@ -140,10 +140,10 @@ public class SnakeService {
     PointDTO possibilityRight = new PointDTO();
     PointDTO possibilityLeft = new PointDTO();
 
-    int guessForMoveUp = 1000;
-    int guessForMoveDown = 1000;
-    int guessForMoveRight = 1000;
-    int guessForMoveLeft = 1000;
+    int guessForMoveUp ;
+    int guessForMoveDown;
+    int guessForMoveRight;
+    int guessForMoveLeft;
 
     PointDTO nearestFood = new PointDTO();
 
@@ -164,6 +164,12 @@ public class SnakeService {
        possibilityLeft.setX(myHead.getX()-1);
        possibilityLeft.setY(myHead.getY());
 
+       // Guess an order of the food
+
+       /*
+        * finished initialisation of thinking
+         */
+
        guessForMoveUp = guessValueOfPossibleMove(possibilityUp);
        guessForMoveDown = guessValueOfPossibleMove(possibilityDown);
        guessForMoveLeft = guessValueOfPossibleMove(possibilityLeft);
@@ -172,8 +178,18 @@ public class SnakeService {
 
    private int guessValueOfPossibleMove(PointDTO point) {
 
+       int maxPossibleValue = width + height + 1;
 
-       return 1000;
+       // Wenn er in der Wand landet
+
+
+       // Wenn er in den besetzten Feldern ist
+
+
+       // Wähle seinen Wert, je kleiner, desto besser
+
+
+       return maxPossibleValue;
    }
 
     /*
