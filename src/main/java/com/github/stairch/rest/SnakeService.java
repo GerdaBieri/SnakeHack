@@ -66,30 +66,44 @@ public class SnakeService {
     }
 
 private ArrayList blockedPointsArray;
+    private ArrayList FoodArray;
+    private PointDTO myHead = new PointDTO();
+    JsonElement meAsASnake;
+
     private void initialize(String request) {
         blockedPointsArray = new ArrayList<PointDTO>();
         JsonElement element = gson.fromJson (request, JsonElement.class);
         JsonObject jsonObj = element.getAsJsonObject();
-        JsonElement meAsASnake = jsonObj.get("you");
+        meAsASnake = jsonObj.get("you");
 
         com.google.gson.JsonArray snakes = jsonObj.getAsJsonArray("snakes");
-        //JsonObject snakesJson = snakes.getAsJsonObject();
+        fillOutAllSnakeInfos(snakes);
+        com.google.gson.JsonArray foods = jsonObj.getAsJsonArray("food");
+        fillInFood(foods);
+
         System.out.println("me:" + meAsASnake);
 
-        for(int i = 0 ; i < snakes.size(); i++){
-            JsonElement b = snakes.get(i).getAsJsonObject().get("coords");
-            com.google.gson.JsonArray c = b.getAsJsonArray();
 
-            for(int j = 0; j < c.size(); j++){
-                JsonElement coordinatesEntry = c.get(j);
-                com.google.gson.JsonArray aha = coordinatesEntry.getAsJsonArray();
-                PointDTO blockedPoint = new PointDTO();
-                blockedPoint.setX(aha.get(0).getAsInt());
-                blockedPoint.setY(aha.get(1).getAsInt());
-                blockedPointsArray.add(blockedPoint);
+    }
+
+
+    private void fillOutAllSnakeInfos(com.google.gson.JsonArray snakes){
+        for(int i = 0 ; i < snakes.size(); i++){
+            com.google.gson.JsonArray coordinatesArray = snakes.get(i).getAsJsonObject().get("coords").getAsJsonArray();
+            PointDTO point = new PointDTO();
+            for(int j = 0; j < coordinatesArray.size(); j++){
+                JsonElement coordinatesEntry = coordinatesArray.get(j);
+                com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
+                point.setX(cordinatesOfPoint.get(0).getAsInt());
+                point.setY(cordinatesOfPoint.get(1).getAsInt());
+                blockedPointsArray.add(point);
             }
 
             if (snakes.get(i).getAsJsonObject().get("id").equals( meAsASnake)){
+                JsonElement coordinatesEntry = coordinatesArray.get(0);
+                com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
+                point.setX(cordinatesOfPoint.get(0).getAsInt());
+                point.setY(cordinatesOfPoint.get(1).getAsInt());
                 System.out.println("this is me" + snakes.get(i).getAsJsonObject().get("id"));
             }else{
                 System.out.println("this is not me:" + snakes.get(i).getAsJsonObject().get("id"));
@@ -99,6 +113,32 @@ private ArrayList blockedPointsArray;
         }
     }
 
+
+    private void fillInFood(com.google.gson.JsonArray foods){
+        for(int i = 0 ; i < foods.size(); i++){
+            com.google.gson.JsonArray coordinatesArray = foods.get(i).getAsJsonObject().get("coords").getAsJsonArray();
+            PointDTO point = new PointDTO();
+            for(int j = 0; j < coordinatesArray.size(); j++){
+                JsonElement coordinatesEntry = coordinatesArray.get(j);
+                com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
+                point.setX(cordinatesOfPoint.get(0).getAsInt());
+                point.setY(cordinatesOfPoint.get(1).getAsInt());
+                FoodArray.add(point);
+            }
+
+            if (foods.get(i).getAsJsonObject().get("id").equals( meAsASnake)){
+                JsonElement coordinatesEntry = coordinatesArray.get(0);
+                com.google.gson.JsonArray cordinatesOfPoint = coordinatesEntry.getAsJsonArray();
+                point.setX(cordinatesOfPoint.get(0).getAsInt());
+                point.setY(cordinatesOfPoint.get(1).getAsInt());
+                System.out.println("this is me" + foods.get(i).getAsJsonObject().get("id"));
+            }else{
+                System.out.println("this is not me:" + foods.get(i).getAsJsonObject().get("id"));
+            }
+
+
+        }
+    }
    /*
    Work with initialized Request settings and set all decision variables
     */
